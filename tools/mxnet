@@ -1,43 +1,30 @@
 #!/bin/bash
 
 set -e
-
-root=$(cd $(dirname ${0})/..; pwd)
-src=${root}/src
-third_party=${root}/third_party
-tools=${root}/tools
-
-identifier=mxnet
+pushd $(cd $(dirname ${0})/..; pwd) > /dev/null
 
 bold() {
     echo "$(tty -s && tput bold)$1$(tty -s && tput sgr0)" 
 }
 
-git_sync() {
-    mkdir -p "${third_party}"
-    if [ -d "${third_party}/${1}" ]; then
-        git -C "${third_party}/${1}" pull --quiet --prune
-    else
-        git -C "${third_party}" clone --quiet --recursive ${2} ${1}
-    fi
-    git -C "${third_party}/${1}" submodule sync --quiet
-    git -C "${third_party}/${1}" submodule update --quiet --init --recursive
-}
-
 clean() {
     bold "mxnet clean"
-    rm -rf ${virtualenv}
-    rm -rf ${third_party}/${identifier}
+    rm -rf "./third_party/src/mxnet"
 }
 
 sync() {
     bold "mxnet sync"
-    git_sync mxnet https://github.com/apache/incubator-mxnet.git
+    [ -d "./third_party/src/mxnet" ] || git clone --quiet --recursive https://github.com/apache/incubator-mxnet.git "./third_party/src/mxnet"
+    pushd "./third_party/src/mxnet" > /dev/null
+    git pull --quiet --prune
+    git submodule sync --quiet
+    git submodule update --quiet --init --recursive
+    popd > /dev/null
 }
 
 metadata() {
     bold "mxnet metadata"
-    # python3 mxnet-script.py
+    # python3 ./tools/mxnet-script.py
 }
 
 while [ "$#" != 0 ]; do

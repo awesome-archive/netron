@@ -7,6 +7,20 @@
     "link":   "https://github.com/ARM-software/armnn"
   },
   {
+    "type":   "armnn",
+    "target": "ssd_mobilenet_v3_small_coco_2019_08_14_q8.armnn",
+    "source": "https://github.com/lutzroeder/netron/files/3839429/samples.zip[ssd_mobilenet_v3_small_coco_2019_08_14_q8.armnn]",
+    "format": "Arm NN",
+    "link":   "https://github.com/ARM-software/armnn"
+  },
+  {
+    "type":   "armnn",
+    "target": "ssd_mobilenet_v3_small_coco_2019_08_14_q16.armnn",
+    "source": "https://github.com/lutzroeder/netron/files/3839429/samples.zip[ssd_mobilenet_v3_small_coco_2019_08_14_q16.armnn]",
+    "format": "Arm NN",
+    "link":   "https://github.com/ARM-software/armnn"
+  },
+  {
     "type":   "bigdl",
     "target": "analytics-zoo_alexnet-quantize_imagenet_0.1.0.model",
     "source": "https://s3-ap-southeast-1.amazonaws.com/analytics-zoo-models/imageclassification/imagenet/analytics-zoo_alexnet-quantize_imagenet_0.1.0.model",
@@ -239,13 +253,6 @@
   },
   {
     "type":   "caffe",
-    "target": "EmotiW_VGG_S.caffemodel",
-    "source": "https://drive.google.com/uc?export=download&id=0BydFau0VP3XSNVYtWnNPMU1TOGM",
-    "format": "Caffe v2",
-    "link":   "https://gist.github.com/GilLevi/54aee1b8b0397721aa4b"
-  },
-  {
-    "type":   "caffe",
     "target": "faster_rcnn_train_test_21cls.pt",
     "source": "https://github.com/sanghoon/pva-faster-rcnn/raw/master/models/pvanet/pva9.1/faster_rcnn_train_test_21cls.pt?raw=true",
     "format": "Caffe v2",
@@ -285,18 +292,6 @@
     "source": "https://raw.githubusercontent.com/cwlacewe/netscope/master/presets/fcn-16s.prototxt",
     "format": "Caffe v1",
     "link":   "https://github.com/cwlacewe/netscope"
-  },
-  {
-    "type":   "caffe",
-    "target": "fcn8s-heavy-pascal.caffemodel",
-    "source": "http://dl.caffe.berkeleyvision.org/fcn8s-heavy-pascal.caffemodel",
-    "format": "Caffe v2"
-  },
-  {
-    "type":   "caffe",
-    "target": "fcn16s-heavy-pascal.caffemodel",
-    "source": "http://dl.caffe.berkeleyvision.org/fcn16s-heavy-pascal.caffemodel",
-    "format": "Caffe v2"
   },
   {
     "type":   "caffe",
@@ -503,9 +498,10 @@
   },
   {
     "type":   "caffe",
-    "target": "pascalcontext-fcn32s-heavy.caffemodel",
-    "source": "http://dl.caffe.berkeleyvision.org/pascalcontext-fcn32s-heavy.caffemodel",
-    "format": "Caffe v2"
+    "target": "ORION_extended_trainval.prototxt",
+    "source": "https://github.com/lmb-freiburg/orion/blob/master/net_archs/modelnet10/ORION_extended_trainval.prototxt?raw=true",
+    "format": "Caffe v2",
+    "link":   "https://github.com/lmb-freiburg/orion"
   },
   {
     "type":   "caffe",
@@ -716,13 +712,6 @@
     "source": "https://raw.githubusercontent.com/cwlacewe/netscope/master/presets/vgg-16.prototxt",
     "format": "Caffe v1",
     "link":   "https://github.com/cwlacewe/netscope"
-  },
-  {
-    "type":   "caffe",
-    "target": "VGG_CNN_M_2048.caffemodel",
-    "source": "http://www.robots.ox.ac.uk/~vgg/software/deep_eval/releases/bvlc/VGG_CNN_M_2048.caffemodel",
-    "format": "Caffe v1",
-    "link":   "https://github.com/natanielruiz/net-archive"
   },
   {
     "type":   "caffe",
@@ -1630,6 +1619,13 @@
   },
   {
     "type":   "coreml",
+    "target": "MovieRecommender.mlmodel",
+    "source": "https://github.com/anupamchugh/iowncode/blob/master/CoreMLRecommender/CoreMLRecommender/MovieRecommender.mlmodel?raw=true",
+    "format": "Core ML v4",
+    "link":   "https://github.com/anupamchugh/iowncode/tree/master/CoreMLRecommender"
+  },
+  {
+    "type":   "coreml",
     "target": "NamesDT.mlmodel",
     "source": "https://github.com/cocoa-ai/NamesCoreMLDemo/raw/master/Names/Resources/NamesDT.mlmodel",
     "link":   "https://github.com/SwiftBrain/awesome-CoreML-models"
@@ -1852,9 +1848,16 @@
   {
     "type":   "darknet",
     "target": "alexnet.cfg,alexnet.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/alexnet.cfg,https://pjreddie.com/media/files/alexnet.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/alexnet.cfg?raw=true,https://pjreddie.com/media/files/alexnet.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/imagenet"
+  },
+  {
+    "type":   "darknet",
+    "target": "csresnext50-panet-spp.cfg",
+    "source": "https://github.com/WongKinYiu/CrossStagePartialNetworks/blob/master/cfg/csresnext50-panet-spp.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/lutzroeder/netron/issues/381"
   },
   {
     "type":   "darknet",
@@ -1866,51 +1869,163 @@
   {
     "type":   "darknet",
     "target": "darknet53_448.cfg,darknet53_448.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/darknet53_448.cfg,https://pjreddie.com/media/files/darknet53_448.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/darknet53_448.cfg?raw=true,https://pjreddie.com/media/files/darknet53_448.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/imagenet"
   },
   {
     "type":   "darknet",
+    "target": "enet-coco.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/enet-coco.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/lutzroeder/netron/issues/381"
+  },
+  {
+    "type":   "darknet",
+    "target": "face_small_3.cfg",
+    "source": "https://github.com/zlmo/Face-Detection/blob/master/cfg/face_small_3.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/zlmo/Face-Detection"
+  },
+  {
+    "type":   "darknet",
+    "target": "Gaussian_yolov3_BDD.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/Gaussian_yolov3_BDD.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
     "target": "go.cfg,go.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/go.cfg,https://pjreddie.com/media/files/go.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/go.cfg?raw=true,https://pjreddie.com/media/files/go.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/darkgo-go-in-darknet"
   },
   {
     "type":   "darknet",
-    "target": "jnet-conv.cfg,jnet-conv.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/jnet-conv.cfg,https://pjreddie.com/media/files/jnet-conv.weights",
-    "format": "Darknet",
-    "link":   "https://pjreddie.com/darknet/nightmare"
-  },
-  {
-    "type":   "darknet",
     "target": "grrm.cfg,grrm.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/rnn.cfg,https://pjreddie.com/media/files/grrm.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/rnn.cfg?raw=true,https://pjreddie.com/media/files/grrm.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/rnns-in-darknet"
   },
   {
     "type":   "darknet",
+    "target": "gru.cfg,gru.weights",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/gru.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://pjreddie.com/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "jnet-conv.cfg,jnet-conv.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/jnet-conv.cfg?raw=true,https://pjreddie.com/media/files/jnet-conv.weights",
+    "format": "Darknet",
+    "link":   "https://pjreddie.com/darknet/nightmare"
+  },
+  {
+    "type":   "darknet",
+    "target": "lstm.train.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/lstm.train.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "mixnet_m_gpu.cfg",
+    "source": "https://github.com/lutzroeder/netron/files/3935529/mixnet_m_gpu.cfg.txt",
+    "format": "Darknet",
+    "link":   "https://github.com/lutzroeder/netron/issues/381"
+  },
+  {
+    "type":   "darknet",
+    "target": "ocr.cfg",
+    "source": "https://github.com/chineseocr/darknet-ocr/blob/master/models/ocr.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/chineseocr/darknet-ocr"
+  },
+  {
+    "type":   "darknet",
     "target": "resnet18.cfg,resnet18.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/resnet18.cfg,https://pjreddie.com/media/files/resnet18.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/resnet18.cfg?raw=true,https://pjreddie.com/media/files/resnet18.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/imagenet"
   },
   {
     "type":   "darknet",
     "target": "resnet152.cfg,resnet152.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/resnet152.cfg,https://pjreddie.com/media/files/resnet152.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/resnet152.cfg?raw=true,https://pjreddie.com/media/files/resnet152.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/imagenet"
   },
   {
     "type":   "darknet",
-    "target": "yolov3-spp.cfg,yolov3-spp.weights",
-    "source": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-spp.cfg,https://pjreddie.com/media/files/yolov3-spp.weights",
+    "target": "tiny.cfg,tiny.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/tiny.cfg?raw=true,https://pjreddie.com/media/files/tiny.weights",
+    "format": "Darknet",
+    "link":   "https://pjreddie.com/darknet/tiny-darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolo-coco.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/yolov1/yolo-coco.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolo-voc.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolo.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolo_v3_tiny_pan3_aa_ae_mixup_scale_giou.cfg",
+    "source": "https://github.com/lutzroeder/netron/files/4006371/yolo_v3_tiny_pan3_aa_ae_mixup_scale_giou.cfg.zip[yolo_v3_tiny_pan3_aa_ae_mixup_scale_giou.cfg]",
+    "format": "Darknet",
+    "link":   "https://github.com/lutzroeder/netron/issues/277"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolov3-openimages.cfg,yolov3-openimages.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/yolov3-openimages.cfg?raw=true,https://pjreddie.com/media/files/yolov3-openimages.weights",
     "format": "Darknet",
     "link":   "https://pjreddie.com/darknet/yolo"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolov3-spp.cfg,yolov3-spp.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/yolov3-spp.cfg?raw=true,https://pjreddie.com/media/files/yolov3-spp.weights",
+    "format": "Darknet",
+    "link":   "https://pjreddie.com/darknet/yolo"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolov3-tiny.cfg,yolov3-tiny.weights",
+    "source": "https://github.com/pjreddie/darknet/blob/master/cfg/yolov3-tiny.cfg?raw=true,https://pjreddie.com/media/files/yolov3-tiny.weights",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolov3-tiny_occlusion_track.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/yolov3-tiny_occlusion_track.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
+  },
+  {
+    "type":   "darknet",
+    "target": "yolo9000.cfg",
+    "source": "https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo9000.cfg?raw=true",
+    "format": "Darknet",
+    "link":   "https://github.com/AlexeyAB/darknet"
   },
   {
     "type":   "dl4j",
@@ -2035,7 +2150,7 @@
     "type":   "keras",
     "target": "DenseNet121.h5",
     "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
+    "script": "./tools/keras sync install zoo",
     "status": "script"
   },
   {
@@ -2063,14 +2178,14 @@
     "type":   "keras",
     "target": "InceptionResNetV2.h5",
     "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
+    "script": "./tools/keras sync install zoo",
     "status": "script"
   },
   {
     "type":   "keras",
     "target": "InceptionV3.h5",
     "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
+    "script": "./tools/keras sync install zoo",
     "status": "script"
   },
   {
@@ -2133,14 +2248,14 @@
     "type":   "keras",
     "target": "MobileNetV2.h5",
     "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
+    "script": "./tools/keras sync install zoo",
     "status": "script"
   },
   {
     "type":   "keras",
     "target": "NASNetMobile.h5",
     "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
+    "script": "./tools/keras sync install zoo",
     "status": "script"
   },
   {
@@ -2216,14 +2331,7 @@
     "type":   "keras",
     "target": "VGG16.h5",
     "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "keras",
-    "target": "VGG19.h5",
-    "link":   "https://keras.io/applications",
-    "script": [ "${root}/tools/keras", "sync install zoo" ],
+    "script": "./tools/keras sync install zoo",
     "status": "script"
   },
   {
@@ -2231,6 +2339,13 @@
     "target": "BinaryClassification_AutoML_SentimentModel.zip",
     "source": "https://github.com/dotnet/machinelearning-samples/blob/master/samples/csharp/getting-started/BinaryClassification_AutoML/SentimentAnalysis/MLModels/SentimentModel.zip?raw=true",
     "format": "ML.NET v1.0.27701.1",
+    "link":   "https://github.com/dotnet/machinelearning-samples"
+  },
+  {
+    "type":   "mlnet",
+    "target": "BikeDemandForecasting.zip",
+    "source": "https://github.com/lutzroeder/netron/files/4042150/MLModel.zip",
+    "format": "ML.NET v1.4.28305.1",
     "link":   "https://github.com/dotnet/machinelearning-samples"
   },
   {
@@ -2661,121 +2776,128 @@
   },
   {
     "type":   "ncnn",
-    "target": "centerface/centerface.param,centerface/centerface.bin",
+    "target": "centerface.param,centerface.bin",
     "source": "https://github.com/MirrorYuChen/ncnn_example/blob/798f64b7d5f0b883e05cb994258d43658b0661b6/models/centerface.param?raw=true,https://github.com/MirrorYuChen/ncnn_example/blob/798f64b7d5f0b883e05cb994258d43658b0661b6/models/centerface.bin?raw=true",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/MirrorYuChen/ncnn_example"
   },
   {
     "type":   "ncnn",
-    "target": "darknet_yolov2/darknet_yolov2.cfg.ncnn,darknet_yolov2/darknet_yolov2.weights.ncnn",
+    "target": "darknet_yolov2.cfg.ncnn,darknet_yolov2.weights.ncnn",
     "source": "https://github.com/00liujj/gen-ncnn-models/raw/master/tests/darknet_yolov2.cfg.ncnn,https://github.com/00liujj/gen-ncnn-models/raw/master/tests/darknet_yolov2.weights.ncnn",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/00liujj/gen-ncnn-models"
   },
   {
     "type":   "ncnn",
-    "target": "frozen_pb/frozen.pb.cfg.ncnn,frozen_pb/frozen.pb.weights.ncnn",
+    "target": "frozen.pb.cfg.ncnn,frozen.pb.weights.ncnn",
     "source": "https://github.com/00liujj/gen-ncnn-models/raw/master/tests/frozen.pb.cfg.ncnn,https://github.com/00liujj/gen-ncnn-models/raw/master/tests/frozen.pb.weights.ncnn",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/00liujj/gen-ncnn-models"
   },
   {
     "type":   "ncnn",
-    "target": "googlenet/googlenet.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/googlenet.param",
-    "format": "NCNN",
+    "target": "googlenet.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/googlenet.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "mnet-opt/mnet-opt.param,mnet-opt/mnet-opt.bin",
+    "target": "mnet-opt.param,mnet-opt.bin",
     "source": "https://github.com/MirrorYuChen/ncnn_example/blob/798f64b7d5f0b883e05cb994258d43658b0661b6/models/mnet-opt.param?raw=true,https://github.com/MirrorYuChen/ncnn_example/blob/798f64b7d5f0b883e05cb994258d43658b0661b6/models/mnet-opt.bin?raw=true",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/MirrorYuChen/ncnn_example"
   },
   {
     "type":   "ncnn",
-    "target": "mobilefacenet/mobilefacenet.bin,mobilefacenet/mobilefacenet.param",
+    "target": "mobilefacenet.bin,mobilefacenet.param",
     "source": "https://github.com/GRAYKEY/mobilefacenet_ncnn/blob/master/models/mobilefacenet.bin?raw=true,https://raw.githubusercontent.com/GRAYKEY/mobilefacenet_ncnn/master/models/mobilefacenet.param",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/GRAYKEY/mobilefacenet_ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "mobilenetv2_yolov3/mobilenetv2_yolov3.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/mobilenetv2_yolov3.param",
-    "format": "NCNN",
+    "target": "mobilenetv2_yolov3.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/mobilenetv2_yolov3.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "Mobilenetssd/MobileNetSSD_deploy.param.bin,Mobilenetssd/MobileNetSSD_deploy.bin",
+    "target": "MobileNetSSD_deploy.param.bin,MobileNetSSD_deploy.bin",
     "source": "https://github.com/chehongshu/ncnnforandroid_objectiondetection_Mobilenetssd/blob/master/MobileNetSSD_demo/app/src/main/assets/MobileNetSSD_deploy.param.bin?raw=true,https://github.com/chehongshu/ncnnforandroid_objectiondetection_Mobilenetssd/blob/master/MobileNetSSD_demo/app/src/main/assets/MobileNetSSD_deploy.bin?raw=true",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/chehongshu/ncnnforandroid_objectiondetection_Mobilenetssd"
   },
   {
     "type":   "ncnn",
-    "target": "ncnn_yolo2/ncnn_yolo2_det3.bin,ncnn_yolo2/ncnn_yolo2_det3.param",
-    "source": "https://raw.githubusercontent.com/kyo055/ncnn_yolo2/master/models/det3.bin,https://raw.githubusercontent.com/kyo055/ncnn_yolo2/master/models/det3.param",
-    "format": "NCNN",
+    "target": "ncnn_yolo2_det3.bin,ncnn_yolo2_det3.param",
+    "source": "https://github.com/kyo055/ncnn_yolo2/blob/master/models/det3.bin?raw=true,https://github.com/kyo055/ncnn_yolo2/blob/master/models/det3.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/kyo055/ncnn_yolo2"
   },
   {
     "type":   "ncnn",
-    "target": "proxylessnasnet/proxylessnasnet.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/proxylessnasnet.param",
-    "format": "NCNN",
+    "target": "netron_issue_397.param",
+    "source": "https://github.com/lutzroeder/netron/files/3981934/det.txt",
+    "format": "ncnn",
+    "link":   "https://github.com/lutzroeder/netron/issues/397"
+  },
+  {
+    "type":   "ncnn",
+    "target": "proxylessnasnet.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/proxylessnasnet.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "resnet18_int8/resnet18_int8.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/resnet18_int8.param",
-    "format": "NCNN",
+    "target": "resnet18_int8.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/resnet18_int8.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "shufflenet/shufflenet.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/shufflenet.param",
-    "format": "NCNN",
+    "target": "shufflenet.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/shufflenet.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "squeezenet/squeezenet.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/squeezenet.param",
-    "format": "NCNN",
+    "target": "squeezenet.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/squeezenet.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "squeezenet_ssd_faces_ncnn/faces_wider_squeezenet.param,squeezenet_ssd_faces_ncnn/faces_wider_squeezenet.bin",
+    "target": "faces_wider_squeezenet.param,faces_wider_squeezenet.bin",
     "source": "https://deepdetect.com/models/init/embedded/images/detection/squeezenet_ssd_faces_ncnn.tar.gz[faces_wider_squeezenet.param,faces_wider_squeezenet.bin]",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://www.deepdetect.com/models/faces_embedded_ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "squeezenet_v1.1/squeezenet_v1.1.param.bin,squeezenet_v1.1/squeezenet_v1.1.bin",
+    "target": "squeezenet_v1.1.param.bin,squeezenet_v1.1.bin",
     "source": "https://github.com/nihui/ncnn-android-squeezenet/blob/master/app/src/main/assets/squeezenet_v1.1.param.bin?raw=true,https://github.com/nihui/ncnn-android-squeezenet/blob/master/app/src/main/assets/squeezenet_v1.1.bin?raw=true",
-    "format": "NCNN",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "squeezenet_v1.1_no_param/squeezenet_v1.1.bin",
+    "target": "squeezenet_v1.1.bin",
     "source": "https://github.com/nihui/ncnn-android-squeezenet/blob/master/app/src/main/assets/squeezenet_v1.1.bin?raw=true",
     "error":  "File not found 'squeezenet_v1.1.param' in 'squeezenet_v1.1.bin'.",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
     "type":   "ncnn",
-    "target": "vgg16/vgg16.param",
-    "source": "https://raw.githubusercontent.com/Tencent/ncnn/master/benchmark/vgg16.param",
-    "format": "NCNN",
+    "target": "vgg16.param",
+    "source": "https://github.com/Tencent/ncnn/blob/master/benchmark/vgg16.param?raw=true",
+    "format": "ncnn",
     "link":   "https://github.com/Tencent/ncnn"
   },
   {
@@ -2811,13 +2933,6 @@
     "target": "bvlc_alexnet_opset_9.onnx",
     "source": "https://s3.amazonaws.com/download.onnx/models/opset_9/bvlc_alexnet.tar.gz[bvlc_alexnet/model.onnx]",
     "link":   "https://github.com/onnx/models/tree/master/bvlc_alexnet"
-  },
-  {
-    "type":   "onnx",
-    "target": "bvlc_alexnet_opset_9.shape.onnx",
-    "status": "script",
-    "script": [ "${root}/tools/onnx", "sync install infer ${root}/test/data/onnx/bvlc_alexnet_opset_9.onnx" ],
-    "format": "ONNX v3"
   },
   {
     "type":   "onnx",
@@ -3033,7 +3148,7 @@
     "type":   "onnx",
     "target": "optional_1.onnx",
     "source": "https://raw.githubusercontent.com/microsoft/onnxruntime/master/onnxruntime/test/testdata/optional_1.onnx",
-    "format": "ONNX v0",
+    "format": "ONNX v3",
     "link":   "https://github.com/microsoft/onnxruntime/tree/master/onnxruntime/test/testdata"
   },
   {
@@ -3089,7 +3204,14 @@
     "target": "squeezenet1.1.onnx",
     "source": "https://s3.amazonaws.com/onnx-model-zoo/squeezenet/squeezenet1.1/squeezenet1.1.onnx",
     "format": "ONNX v3",
-    "link":   "https://github.com/onnx/models/tree/master/models/image_classification/squeezenet"
+    "link":   "https://github.com/onnx/models/tree/master/vision/classification/squeezenet"
+  },
+  {
+    "type":   "onnx",
+    "target": "squeezenet1.1_shape.onnx",
+    "source": "https://github.com/lutzroeder/netron/files/3935903/squeezenet1.1_shape.onnx.zip[squeezenet1.1_shape.onnx]",
+    "format": "ONNX v3",
+    "link":   "https://github.com/lutzroeder/netron/issues/188"
   },
   {
     "type":   "onnx",
@@ -3641,6 +3763,13 @@
     "link":   "https://download.01.org/openvinotoolkit"
   },
   {
+     "type":   "openvino",
+     "target": "2019_R7_netron_issue372.xml",
+     "source": "https://github.com/lutzroeder/netron/files/3846426/ir.xml.zip[ir.xml]",
+     "format": "OpenVINO IR",
+     "link":   "https://github.com/lutzroeder/netron/issues/372"
+   },
+   {
     "type":   "openvino",
     "target": "2019_with_pad_simple.xml",
     "source": "https://github.com/lutzroeder/netron/files/2871673/with_pad_simple.xml.zip[with_pad_simple.xml]",
@@ -3705,10 +3834,26 @@
   },
   {
     "type":   "pytorch",
-    "target": "alexnet.pth",
+    "target": "alexnet.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "alexnet.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'alexnet.pt'.",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
+  },
+  {
+    "type":   "pytorch",
+    "target": "alexnet_traced.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'alexnet_traced.pt'.",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
   },
   {
     "type":   "pytorch",
@@ -3716,6 +3861,28 @@
     "source": "https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth",
     "format": "PyTorch",
     "link":   "https://github.com/pytorch/vision/blob/master/torchvision/models/alexnet.py"
+  },
+  {
+    "type":   "pytorch",
+    "target": "blitz_neural_networks_tutorial_traced.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3748989/blitz_neural_networks_tutorial.zip[blitz_neural_networks_tutorial_traced.pt]",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/281"
+  },
+  {
+    "type":   "pytorch",
+    "target": "blitz_neural_networks_tutorial.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3748989/blitz_neural_networks_tutorial.zip[blitz_neural_networks_tutorial.pt]",
+    "error":  "Unknown statement in 'blitz_neural_networks_tutorial.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/281"
+  },
+  {
+    "type":   "pytorch",
+    "target": "blitz_cifar10_tutorial.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3748500/blitz_cifar10_tutorial.zip[blitz_cifar10_tutorial.pt]",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/281"
   },
   {
     "type":   "pytorch",
@@ -3746,16 +3913,41 @@
   },
   {
     "type":   "pytorch",
-    "target": "densenet161.pth",
+    "target": "cruise_cutin_vehicle_model.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/cruise_cutin_vehicle_model.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "cruise_go_vehicle_model.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/cruise_go_vehicle_model.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "densenet161.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
   },
   {
     "type":   "pytorch",
-    "target": "densenet121.pth",
+    "target": "densenet161.pt",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "error":  "Unknown statement in 'densenet161.pt'.",
+    "render": "skip",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "densenet161_traced.pt",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "render": "skip",
+    "error":  "Unknown function argument in 'densenet161_traced.pt'.",
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
   },
   {
@@ -3765,22 +3957,45 @@
   },
   {
     "type":   "pytorch",
-    "target": "inception_v3.pth",
+    "target": "inception_v3.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
   },
   {
     "type":   "pytorch",
-    "target": "mobilenet_v2.pth",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
+    "target": "inception_v3.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'inception_v3.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
+  },
+  {
+    "type":   "pytorch",
+    "target": "inception_v3_traced.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'inception_v3_traced.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
   },
   {
     "type":   "pytorch",
     "target": "inception_v3_google-1a9a5a14.pth",
     "source": "https://download.pytorch.org/models/inception_v3_google-1a9a5a14.pth"
+  },
+  {
+    "type":   "pytorch",
+    "target": "junction_mlp_vehicle_model.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/junction_mlp_vehicle_model.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "lane_scanning_vehicle_model.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/lane_scanning_vehicle_model.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
   },
   {
     "type":   "pytorch",
@@ -3790,9 +4005,30 @@
   },
   {
     "type":   "pytorch",
+    "target": "mask_rcnn_r50_fpn_1x_20181010-069fa190.pth",
+    "source": "https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/mask_rcnn_r50_fpn_1x_20181010-069fa190.pth",
+    "format": "PyTorch",
+    "link":   "https://github.com/open-mmlab/mmdetection/blob/master/docs/MODEL_ZOO.md"
+  },
+  {
+    "type":   "pytorch",
     "target": "mnist_linear.ckpt",
     "source": "https://github.com/lutzroeder/netron/files/3585288/mnist_linear_torchscript.zip[mnist_linear.ckpt]",
     "format": "PyTorch",
+    "link":   "https://github.com/lutzroeder/netron/issues/281"
+  },
+  {
+    "type":   "pytorch",
+    "target": "mnist_linear_torchscript_1.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3585288/mnist_linear_torchscript.zip[mnist_linear_torchscript_1.pt]",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/281"
+  },
+  {
+    "type":   "pytorch",
+    "target": "mnist_linear_torchscript_2.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3585288/mnist_linear_torchscript.zip[mnist_linear_torchscript_2.pt]",
+    "format": "TorchScript v1",
     "link":   "https://github.com/lutzroeder/netron/issues/281"
   },
   {
@@ -3804,10 +4040,90 @@
   },
   {
     "type":   "pytorch",
+    "target": "mobilenet_quantized_scripted_925.pt",
+    "source": "https://github.com/pytorch/android-demo-app/blob/master/PyTorchDemoApp/app/src/main/assets/mobilenet_quantized_scripted_925.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/pytorch/android-demo-app"
+  },
+  {
+    "type":   "pytorch",
+    "target": "mobilenet_v2.pkl.pth",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "mobilenet_v2.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'mobilenet_v2.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
+  },
+  {
+    "type":   "pytorch",
+    "target": "mobilenet_v2_traced.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown function argument in 'mobilenet_v2_traced.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
+  },
+  {
+    "type":   "pytorch",
+    "target": "model-reddit16-f140225004_2.pt1",
+    "source": "https://github.com/pytorch/android-demo-app/blob/master/PyTorchDemoApp/app/src/main/assets/model-reddit16-f140225004_2.pt1?raw=true",
+    "error":  "Unknown function argument in 'model-reddit16-f140225004_2.pt1'.",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/pytorch/android-demo-app"
+  },
+  {
+    "type":   "pytorch",
     "target": "model_chall_train_152ft_384x288.pth.tar",
     "source": "https://www.dropbox.com/s/hfz5nkd39uisvbr/model_chall_train_152ft_384x288.pth.tar?dl=1",
     "format": "PyTorch",
     "link":   "https://github.com/JimmySuen/integral-human-pose"
+  },
+  {
+    "type":   "pytorch",
+    "target": "netron_issue_313_v1.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3721266/netron_issue_313.zip[netron_issue_313_v1.pt]",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/313"
+  },
+  {
+    "type":   "pytorch",
+    "target": "netron_issue_313_v2.pt",
+    "source": "https://github.com/lutzroeder/netron/files/3721266/netron_issue_313.zip[netron_issue_313_v2.pt]",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/313"
+  },
+  {
+    "type":   "pytorch",
+    "target": "pedestrian_interaction_position_embedding.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_position_embedding.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "pedestrian_interaction_prediction_layer.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_prediction_layer.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "pedestrian_interaction_single_lstm.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_single_lstm.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "pedestrian_interaction_social_embedding.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_social_embedding.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
   },
   {
     "type":   "pytorch",
@@ -3819,10 +4135,26 @@
   },
   {
     "type":   "pytorch",
-    "target": "resnet18.pth",
+    "target": "resnet18.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "resnet18.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'resnet18.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
+  },
+  {
+    "type":   "pytorch",
+    "target": "resnet18_traced.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'resnet18_traced.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
   },
   {
     "type":   "pytorch",
@@ -3861,17 +4193,26 @@
   },
   {
     "type":   "pytorch",
-    "target": "resnet50.pth",
+    "target": "resnet101.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
   },
   {
     "type":   "pytorch",
-    "target": "resnet50.pth",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
+    "target": "resnet101.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'resnet101.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
+  },
+  {
+    "type":   "pytorch",
+    "target": "resnet101_traced.pt",
+    "script": "./tools/pytorch sync install zoo",
+    "error":  "Unknown statement in 'resnet101_traced.pt'.",
+    "format": "TorchScript v1",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
   },
   {
     "type":   "pytorch",
@@ -3906,9 +4247,19 @@
   },
   {
     "type":   "pytorch",
-    "target": "squeezenet1_0.pth",
+    "target": "shufflenet_v2_x1_0.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "shufflenet_v2_x1_0.pt",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'shufflenet_v2_x1_0.pt'.",
+    "render": "skip",
+    "script": "./tools/pytorch sync install zoo",
     "status": "script"
   },
   {
@@ -3916,6 +4267,31 @@
     "target": "squeezenet1_0-a815701f.pth",
     "source": "https://download.pytorch.org/models/squeezenet1_0-a815701f.pth",
     "format": "PyTorch"
+  },
+  {
+    "type":   "pytorch",
+    "target": "squeezenet1_1.pkl.pth",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "squeezenet1_1.pt",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'squeezenet1_1.pt'.",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "squeezenet1_1_traced.pt",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'squeezenet1_1_traced.pt'.",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
   },
   {
     "type":   "pytorch",
@@ -3929,6 +4305,27 @@
     "source": "https://raw.githubusercontent.com/MagicLeapResearch/SuperPointPretrainedNetwork/master/superpoint_v1.pth",
     "format": "PyTorch",
     "link":   "https://github.com/MagicLeapResearch/SuperPointPretrainedNetwork"
+  },
+  {
+    "type":   "pytorch",
+    "target": "traced_online_lane_enc.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/traced_online_lane_enc.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "traced_online_obs_enc.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/traced_online_obs_enc.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
+  },
+  {
+    "type":   "pytorch",
+    "target": "traced_online_pred_layer.pt",
+    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/traced_online_pred_layer.pt?raw=true",
+    "format": "TorchScript v1",
+    "link":   "https://github.com/ApolloAuto/apollo"
   },
   {
     "type":   "pytorch",
@@ -3981,32 +4378,50 @@
   },
   {
     "type":   "pytorch",
+    "target": "vgg-cifar10.pth.tar",
+    "source": "http://www.cs.unc.edu/~cyfu/cifar10/model_best.pth.tar",
+    "format": "PyTorch",
+    "link":   "https://github.com/chengyangfu/pytorch-vgg-cifar10"
+  },
+  {
+    "type":   "pytorch",
     "target": "vgg11-bbd30ac9.pth",
     "format": "PyTorch",
     "source": "https://download.pytorch.org/models/vgg11-bbd30ac9.pth"
   },
   {
     "type":   "pytorch",
-    "target": "vgg11_bn.pth",
+    "target": "vgg11_bn.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "format": "PyTorch",
     "status": "script"
   },
   {
     "type":   "pytorch",
-    "target": "vgg16.pth",
+    "target": "vgg16.pkl.pth",
     "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
+    "script": "./tools/pytorch sync install zoo",
     "format": "PyTorch",
     "status": "script"
   },
   {
     "type":   "pytorch",
-    "target": "yolov3-tiny.pt",
-    "source": "https://drive.google.com/uc?export=download&id=1qKSgejNeNczgNNiCn9ZF_o55GFk1DjY_",
-    "format": "PyTorch",
-    "link":   "https://github.com/satrajit-chatterjee/yolov3"
+    "target": "vgg16.pt",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'vgg16.pt'.",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
+  },
+  {
+    "type":   "pytorch",
+    "target": "vgg16_traced.pt",
+    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
+    "format": "TorchScript v1",
+    "error":  "Unknown statement in 'vgg16_traced.pt'.",
+    "script": "./tools/pytorch sync install zoo",
+    "status": "script"
   },
   {
     "type":   "sklearn",
@@ -4185,14 +4600,6 @@
     "source": "https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/densenet_2018_04_27.tgz[densenet/densenet.pb]",
     "format": "TensorFlow Graph",
     "link":   "https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/guide/hosted_models.md"
-  },
-  {
-    "type":   "tf",
-    "target": "efficientnet-b3.ckpt.meta",
-    "source": "https://storage.googleapis.com/cloud-tpu-checkpoints/efficientnet/efficientnet-b3.tar.gz[efficientnet-b3/model.ckpt.meta]",
-    "render": "skip",
-    "format": "TensorFlow MetaGraph",
-    "link":   "https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet"
   },
   {
     "type":   "tf",
@@ -4480,6 +4887,20 @@
   },
   {
     "type":   "tf",
+    "target": "netron_issue_342.zip",
+    "source": "https://github.com/lutzroeder/netron/files/3918584/netron_issue_342.zip",
+    "format": "TensorFlow Saved Model v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/342"
+  },
+  {
+    "type":   "tf",
+    "target": "netron_issue_405.zip",
+    "source": "https://github.com/lutzroeder/netron/files/4017943/netron_issue_405.zip",
+    "format": "TensorFlow Tensor Bundle v2",
+    "link":   "https://github.com/lutzroeder/netron/issues/405"
+  },
+  {
+    "type":   "tf",
     "target": "pose_estimation_for_mobile.pb",
     "source": "https://github.com/edvardHua/PoseEstimationForMobile/blob/master/release/cpm_model/model.pb?raw=true",
     "format": "TensorFlow Graph",
@@ -4498,6 +4919,13 @@
     "source": "https://deepdetect.com/models/tf/resnet_v1_50/resnet_v1_50.pb",
     "format": "TensorFlow Graph",
     "link":   "https://deepdetect.com/models/tf"
+  },
+  {
+    "type":   "tf",
+    "target": "resnet_v1_50.ckpt",
+    "source": "https://github.com/serre-lab/deeplabcut_mgh/blob/master/deeplabcut/pose_estimation_tensorflow/models/pretrained/resnet_v1_50.ckpt?raw=true",
+    "format": "TensorFlow Tensor Bundle v1",
+    "link":   "https://github.com/lutzroeder/netron/issues/405"
   },
   {
     "type":   "tf",
@@ -4767,6 +5195,13 @@
   },
   {
     "type":   "tflite",
+    "target": "netron_issue_386.tflite",
+    "source": "https://github.com/lutzroeder/netron/files/3963415/netron_issue_386.zip[netron_issue_386.tflite]",
+    "format": "TensorFlow Lite v3",
+    "link":   "https://github.com/lutzroeder/netron/issues/386"
+  },
+  {
+    "type":   "tflite",
     "target": "pose_estimation_for_mobile.tflite",
     "source": "https://github.com/edvardHua/PoseEstimationForMobile/blob/master/release/cpm_model/model.tflite?raw=true",
     "format": "TensorFlow Lite v3",
@@ -4827,6 +5262,13 @@
     "target": "speech_tts_model_2017_11_14.tflite",
     "source": "https://storage.googleapis.com/download.tensorflow.org/models/tflite/speech_tts_model_2017_11_14.tflite",
     "format": "TensorFlow Lite v3"
+  },
+  {
+    "type":   "tflite",
+    "target": "text_classification.tflite",
+    "source": "https://storage.googleapis.com/download.tensorflow.org/models/tflite/text_classification/text_classification.tflite",
+    "format": "TensorFlow Lite v3",
+    "link":   "https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/text_classification/overview.md"
   },
   {
     "type":   "tflite",
@@ -4977,22 +5419,8 @@
   },
   {
     "type":   "torch",
-    "target": "resnet-34.t7",
-    "source": "https://d2j0dndfm35trm.cloudfront.net/resnet-34.t7",
-    "format": "Torch v7",
-    "link":   "https://github.com/facebook/fb.resnet.torch"
-  },
-  {
-    "type":   "torch",
     "target": "resnet-50.t7",
     "source": "https://d2j0dndfm35trm.cloudfront.net/resnet-50.t7",
-    "format": "Torch v7",
-    "link":   "https://github.com/facebook/fb.resnet.torch"
-  },
-  {
-    "type":   "torch",
-    "target": "resnet-200.t7",
-    "source": "https://d2j0dndfm35trm.cloudfront.net/resnet-200.t7",
     "format": "Torch v7",
     "link":   "https://github.com/facebook/fb.resnet.torch"
   },
@@ -5065,287 +5493,5 @@
     "source": "https://cs.stanford.edu/people/jcjohns/fast-neural-style/models/vgg16.t7",
     "format": "Torch v7",
     "link":   "https://github.com/jcjohnson/fast-neural-style"
-  },
-  {
-    "type":   "torchscript",
-    "target": "alexnet.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "format": "TorchScript v1",
-    "error":  "Unknown statement in 'alexnet.pt'.",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "alexnet_traced.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "format": "TorchScript v1",
-    "error":  "Unknown statement in 'alexnet_traced.pt'.",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "blitz_neural_networks_tutorial_traced.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3748989/blitz_neural_networks_tutorial.zip[blitz_neural_networks_tutorial_traced.pt]",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/281"
-  },
-  {
-    "type":   "torchscript",
-    "target": "blitz_neural_networks_tutorial.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3748989/blitz_neural_networks_tutorial.zip[blitz_neural_networks_tutorial.pt]",
-    "error":  "Unknown statement in 'blitz_neural_networks_tutorial.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/281"
-  },
-  {
-    "type":   "torchscript",
-    "target": "blitz_cifar10_tutorial.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3748500/blitz_cifar10_tutorial.zip[blitz_cifar10_tutorial.pt]",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/281"
-  },
-  {
-    "type":   "torchscript",
-    "target": "cruise_cutin_vehicle_model.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/cruise_cutin_vehicle_model.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "cruise_go_vehicle_model.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/cruise_go_vehicle_model.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "densenet121.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "error":  "Unknown statement in 'densenet121.pt'.",
-    "render": "skip",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "torchscript",
-    "target": "densenet121_traced.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "render": "skip",
-    "error":  "Unknown function argument in 'densenet121_traced.pt'.",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "torchscript",
-    "target": "inception_v3.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Unknown statement in 'inception_v3.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "inception_v3_traced.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Unknown statement in 'inception_v3_traced.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "junction_mlp_vehicle_model.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/junction_mlp_vehicle_model.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "lane_scanning_vehicle_model.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/lane_scanning_vehicle_model.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "mnist_linear_torchscript_1.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3585288/mnist_linear_torchscript.zip[mnist_linear_torchscript_1.pt]",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/281"
-  },
-  {
-    "type":   "torchscript",
-    "target": "mnist_linear_torchscript_2.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3585288/mnist_linear_torchscript.zip[mnist_linear_torchscript_2.pt]",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/281"
-  },
-  {
-    "type":   "torchscript",
-    "target": "mobilenet_v2.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Method 'forward' not found in 'mobilenet_v2.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "mobilenet_quantized_scripted_925.pt",
-    "source": "https://github.com/pytorch/android-demo-app/blob/master/PyTorchDemoApp/app/src/main/assets/mobilenet_quantized_scripted_925.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/pytorch/android-demo-app"
-  },
-  {
-    "type":   "torchscript",
-    "target": "mobilenet_v2_traced.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Unknown function argument in 'mobilenet_v2_traced.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "model-reddit16-f140225004_2.pt1",
-    "source": "https://github.com/pytorch/android-demo-app/blob/master/PyTorchDemoApp/app/src/main/assets/model-reddit16-f140225004_2.pt1?raw=true",
-    "error":  "Unknown function argument in 'model-reddit16-f140225004_2.pt1'.",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/pytorch/android-demo-app"
-  },
-  {
-    "type":   "torchscript",
-    "target": "netron_issue_313_v1.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3721266/netron_issue_313.zip[netron_issue_313_v1.pt]",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/313"
-  },
-  {
-    "type":   "torchscript",
-    "target": "netron_issue_313_v2.pt",
-    "source": "https://github.com/lutzroeder/netron/files/3721266/netron_issue_313.zip[netron_issue_313_v2.pt]",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/lutzroeder/netron/issues/313"
-  },
-  {
-    "type":   "torchscript",
-    "target": "pedestrian_interaction_position_embedding.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_position_embedding.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "pedestrian_interaction_prediction_layer.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_prediction_layer.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "pedestrian_interaction_single_lstm.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_single_lstm.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "pedestrian_interaction_social_embedding.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/pedestrian_interaction_social_embedding.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "resnet18.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Method 'forward' not found in 'resnet18.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "resnet18_traced.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Unknown statement in 'resnet18_traced.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "resnet50.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Unknown statement in 'resnet50.pt'.",
-    "error":  "Method 'forward' not found in 'resnet50.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "resnet50_traced.pt",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "error":  "Unknown statement in 'resnet50_traced.pt'.",
-    "format": "TorchScript v1",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html"
-  },
-  {
-    "type":   "torchscript",
-    "target": "shufflenet_v2_x1_0.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "error":  "Method 'forward' not found in 'shufflenet_v2_x1_0.pt'.",
-    "render": "skip",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "torchscript",
-    "target": "squeezenet1_1.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "error":  "Unknown statement in 'squeezenet1_1.pt'.",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "torchscript",
-    "target": "squeezenet1_1_traced.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "error":  "Unknown statement in 'squeezenet1_1_traced.pt'.",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "torchscript",
-    "target": "traced_online_lane_enc.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/traced_online_lane_enc.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "traced_online_obs_enc.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/traced_online_obs_enc.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "traced_online_pred_layer.pt",
-    "source": "https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/data/traced_online_pred_layer.pt?raw=true",
-    "format": "TorchScript v1",
-    "link":   "https://github.com/ApolloAuto/apollo"
-  },
-  {
-    "type":   "torchscript",
-    "target": "vgg16.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "error":  "Unknown statement in 'vgg16.pt'.",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
-  },
-  {
-    "type":   "torchscript",
-    "target": "vgg16_traced.pt",
-    "link":   "https://pytorch.org/docs/stable/torchvision/models.html",
-    "error":  "Unknown statement in 'vgg16_traced.pt'.",
-    "script": [ "${root}/tools/pytorch", "sync install zoo" ],
-    "status": "script"
   }
 ]

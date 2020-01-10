@@ -113,17 +113,18 @@ tflite.Graph = class {
             const tensor = graph.tensors(i);
             let initializer = null;
             const buffer = model.buffers(tensor.buffer());
-            if (buffer.dataLength() > 0) {
-                initializer = new tflite.Tensor(tensor, buffer);
+            const is_variable = tensor.isVariable();
+            if (buffer.dataLength() > 0 || is_variable) {
+                initializer = new tflite.Tensor(i, tensor, buffer, is_variable);
             }
-            args.push(new tflite.Argument(tensor, i, initializer));
+            args.push(new tflite.Argument(i, tensor, initializer));
             names.push(tensor.name());
         }
         for (let j = 0; j < graph.operatorsLength(); j++) {
             const node = graph.operators(j);
             const opcodeIndex = node.opcodeIndex();
             const operator = (opcodeIndex < operatorCodeList.length) ? operatorCodeList[opcodeIndex] : { name: '(' + opcodeIndex.toString() + ')' };
-            this._nodes.push(new tflite.Node(metadata, node, operator, j.toString(), args));
+            this._nodes.push(new tflite.Node(metadata, node, operator, args));
         }
         for (let k = 0; k < graph.inputsLength(); k++) {
             const inputIndex = graph.inputs(k);
@@ -158,10 +159,9 @@ tflite.Graph = class {
 
 tflite.Node = class {
 
-    constructor(metadata, node, operator, name, args) {
+    constructor(metadata, node, operator, args) {
         this._metadata = metadata;
         this._operator = operator;
-        this._name = name;
         this._inputs = [];
         this._outputs = [];
         if (node) {
@@ -269,7 +269,7 @@ tflite.Node = class {
                                         value = activationFunctionMap[value];
                                     }
                                     this._chain = [];
-                                    this._chain.push(new tflite.Node(metadata, null, { name: value }, '', []));
+                                    this._chain.push(new tflite.Node(metadata, null, { name: value }, []));
                                 }
                             }
                             this._attributes.push(attribute);
@@ -285,7 +285,7 @@ tflite.Node = class {
     }
 
     get name() {
-        return this._name;
+        return '';
     }
 
     get domain() {
@@ -360,20 +360,14 @@ tflite.Attribute = class {
             if (this._type == 'shape') {
                 this._value = new tflite.TensorShape(value);
             }
-            else if (this._type && tflite.schema) {
-                const type = tflite.schema[this._type];
-                if (type) {
-                    tflite.Attribute._reverseMap = tflite.Attribute._reverseMap || {};
-                    let reverse = tflite.Attribute._reverseMap[this._type];
-                    if (!reverse) {
-                        reverse = {};
-                        for (let key of Object.keys(type)) {
-                            reverse[type[key.toString()]] = key;
-                        }
-                        tflite.Attribute._reverseMap[this._type] = reverse;
+            else if (this._type) {
+                switch (this._type) {
+                    case 'TensorType': {
+                        this._value = tflite.Utility.dataType(this._value);
+                        break;
                     }
-                    if (Object.prototype.hasOwnProperty.call(reverse, this._value)) {
-                        this._value = reverse[this._value];
+                    default: {
+                        this._value = tflite.Utility.enum(this._type, this._value);
                     }
                 }
             }
@@ -438,8 +432,8 @@ tflite.Parameter = class {
 
 tflite.Argument = class {
 
-    constructor(tensor, index, initializer) {
-        this._id = tensor.name() || index.toString();
+    constructor(index, tensor, initializer) {
+        this._id = tensor.name() + ':' + index.toString();
         this._type = initializer ? null : new tflite.TensorType(tensor);
         this._initializer = initializer;
         const quantization = tensor.quantization();
@@ -487,10 +481,15 @@ tflite.Argument = class {
 
 tflite.Tensor = class {
 
-    constructor(tensor, buffer) {
-        this._name = tensor.name();
+    constructor(index, tensor, buffer, is_variable) {
+        this._name = tensor.name() + ':' + index.toString();
         this._type = new tflite.TensorType(tensor);
         this._data = buffer.dataLength() > 0 ? buffer.dataArray() : null;
+        this._is_variable = is_variable;
+    }
+
+    get kind() {
+        return this._is_variable ? 'Variable' : '';
     }
 
     get name() {
@@ -634,13 +633,7 @@ tflite.Tensor = class {
 tflite.TensorType = class {
 
     constructor(tensor) {
-        if (!tflite.TensorType._tensorTypeMap) {
-            tflite.TensorType._tensorTypeMap = tflite.TensorType._tensorTypeMap || {};
-            for (let key of Object.keys(tflite.schema.TensorType)) {
-                tflite.TensorType._tensorTypeMap[tflite.schema.TensorType[key].toString()] = key.toLowerCase();
-            }
-        }
-        this._dataType = tflite.TensorType._tensorTypeMap[tensor.type().toString()] || '?';
+        this._dataType = tflite.Utility.dataType(tensor.type());
         let dimensions = [];
         const shapeLength = tensor.shapeLength();
         if (shapeLength > 0) {
@@ -736,6 +729,43 @@ tflite.Metadata = class {
         return null;
     }
 };
+
+tflite.Utility = class {
+
+    static dataType(type) {
+        if (!tflite.Utility._tensorTypeMap) {
+            tflite.Utility._tensorTypeMap = new Map();
+            for (let name of Object.keys(tflite.schema.TensorType)) {
+                tflite.Utility._tensorTypeMap.set(tflite.schema.TensorType[name], name.toLowerCase());
+            }
+            tflite.Utility._tensorTypeMap.set(6, 'boolean');
+        }
+        return tflite.Utility._tensorTypeMap.has(type) ? tflite.Utility._tensorTypeMap.get(type) : '?';
+    }
+
+    static enum(type, value) {
+        if (type && tflite.schema && tflite.schema[type]) {
+            if (!tflite.Utility._enumTypeMap) {
+                tflite.Utility._enumTypeMap = new Map();
+            }
+            let typeMap = tflite.Utility._enumTypeMap.get(type);
+            if (!typeMap) {
+                typeMap = new Map();
+                const enumType = tflite.schema[type];
+                if (enumType) {
+                    for (let key of Object.keys(enumType)) {
+                        typeMap.set(enumType[key], key);
+                    }
+                }
+                tflite.Utility._enumTypeMap.set(type, typeMap);
+            }
+            if (typeMap.has(value)) {
+                return typeMap.get(value);
+            }
+        }
+        return value;
+    }
+}
 
 tflite.Error = class extends Error {
 

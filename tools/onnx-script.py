@@ -48,7 +48,6 @@ categories = {
 
     'Flatten': 'Shape',
     'Reshape': 'Shape',
-    'Transpose': 'Shape',
     'Tile': 'Shape',
 
     'Xor': 'Logic',
@@ -74,7 +73,9 @@ categories = {
 
     'ImageScaler': 'Data',
     'Crop': 'Data',
+    'Upsample': 'Data',
 
+    'Transpose': 'Transform',
     'Gather': 'Transform',
     'Unsqueeze': 'Transform',
     'Squeeze': 'Transform',
@@ -216,7 +217,8 @@ def pip_import(package):
 def metadata():
     schemas = defs.get_all_schemas_with_history()
     schemas = sorted(schemas, key=lambda schema: schema.name)
-    generate_json(schemas, '../src/onnx-metadata.json')
+    json_file = os.path.join(os.path.dirname(__file__), '../src/onnx-metadata.json')
+    generate_json(schemas, json_file)
 
 def convert():
     file = sys.argv[2]

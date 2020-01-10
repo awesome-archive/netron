@@ -951,7 +951,8 @@ view.View = class {
                                 [ 'float16', 'f2' ], [ 'float32', 'f4' ], [ 'float64', 'f8' ],
                                 [ 'int8', 'i1' ], [ 'int16', 'i2'], [ 'int32', 'i4' ], [ 'int64', 'i8' ],
                                 [ 'uint8', 'u1' ], [ 'uint16', 'u2' ], [ 'uint32', 'u4' ], [ 'uint64', 'u8' ],
-                                [ 'qint8', 'i1' ]
+                                [ 'qint8', 'i1' ], [ 'qint16', 'i2' ],
+                                [ 'quint8', 'u1' ], [ 'quint16', 'u2' ]
                             ]);
                             let array = new numpy.Array();
                             array.shape = tensor.type.shape.dimensions;
@@ -1151,11 +1152,10 @@ view.ModelFactoryService = class {
         this.register('./coreml', [ '.mlmodel' ]);
         this.register('./caffe', [ '.caffemodel', '.pbtxt', '.prototxt', '.pt' ]);
         this.register('./caffe2', [ '.pb', '.pbtxt', '.prototxt' ]);
-        this.register('./pytorch', [ '.pt', '.pth', '.pkl', '.h5', '.t7', '.model', '.dms', '.pth.tar', '.ckpt', '.bin' ]);
+        this.register('./pytorch', [ '.pt', '.pth', '.pt1', '.pkl', '.h5', '.t7', '.model', '.dms', '.pth.tar', '.ckpt', '.bin' ]);
         this.register('./torch', [ '.t7' ]);
-        this.register('./torchscript', [ '.pt', '.pt1', '.pth' ]);
         this.register('./tflite', [ '.tflite', '.lite', '.tfl', '.bin' ]);
-        this.register('./tf', [ '.pb', '.meta', '.pbtxt', '.prototxt', '.json' ]);
+        this.register('./tf', [ '.pb', '.meta', '.pbtxt', '.prototxt', '.json', '.index', '.ckpt' ]);
         this.register('./sklearn', [ '.pkl', '.joblib', '.model' ]);
         this.register('./cntk', [ '.model', '.cntk', '.cmf', '.dnn' ]);
         this.register('./paddle', [ '.paddle', '__model__' ]);
@@ -1180,7 +1180,8 @@ view.ModelFactoryService = class {
     open(context) {
         return this._openArchive(context).then((context) => {
             context = new ModelContext(context);
-            let extension = context.identifier.split('.').pop().toLowerCase();
+            const identifier = context.identifier;
+            const extension = identifier.split('.').pop().toLowerCase();
             let modules = this._filter(context);
             if (modules.length == 0) {
                 throw new ModelError("Unsupported file extension '." + extension + "'.");
@@ -1224,19 +1225,18 @@ view.ModelFactoryService = class {
                         'LICENSE.meta',
                         'input_0.pb', 
                         'output_0.pb',
-                        'face_label_map.pbtxt', 
-                        'hand_label_map.pbtxt',
-                        'imagenet_2012_challenge_label_map_proto.pbtxt', 
-                        'label_map.pbtxt',
-                        'labels_map.pbtxt',
-                        'labelmap.pbtxt',
-                        'mscoco_label_map.pbtxt',
-                        'mscoco_complete_label_map.pbtxt',
                         'object-detection.pbtxt',
-                        'tf_label_map.pbtxt',
-                        'training_label_map.pbtxt'
                     ]);
-                    throw new ModelError("Unsupported file content for extension '." + extension + "' in '" + context.identifier + "'.", !knownUnsupportedIdentifiers.has(context.identifier));
+                    let skip = knownUnsupportedIdentifiers.has(identifier);
+                    if (!skip && extension === 'pbtxt') {
+                        if (identifier.includes('label_map') || identifier.includes('labels_map') || identifier.includes('labelmap')) {
+                            const tags = context.tags('pbtxt');
+                            if (tags.size === 1 && (tags.has('item') || tags.has('entry'))) {
+                                skip = true;
+                            }
+                        }
+                    }
+                    throw new ModelError("Unsupported file content for extension '." + extension + "' in '" + identifier + "'.", !skip);
                 }
             };
             return nextModule();

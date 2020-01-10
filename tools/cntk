@@ -1,44 +1,45 @@
 #!/bin/bash
 
 set -e
-
-root=$(cd $(dirname ${0})/..; pwd)
-node_modules=${root}/node_modules
-src=${root}/src
-third_party=${root}/third_party
-tools=${root}/tools
-
-identifier=cntk
+pushd $(cd $(dirname ${0})/..; pwd) > /dev/null
 
 bold() {
     echo "$(tty -s && tput bold)$1$(tty -s && tput sgr0)" 
 }
 
-git_sync() {
-    mkdir -p "${third_party}"
-    if [ -d "${third_party}/${1}" ]; then
-        git -C "${third_party}/${1}" pull --quiet --prune
-    else
-        git -C "${third_party}" clone --quiet --recursive ${2} ${1}
-    fi
-    git -C "${third_party}/${1}" submodule sync --quiet
-    git -C "${third_party}/${1}" submodule update --quiet --init --recursive
-}
-
 clean() {
     bold "cntk clean"
-    rm -rf ${third_party}/cntk
+    rm -rf "./third_party/src/cntk"
 }
 
 sync() {
     bold "cntk sync"
-    git_sync cntk https://github.com/Microsoft/CNTK.git
+    case ${OSTYPE} in
+        linux*|darwin*)
+            [ -d "./third_party/src/cntk" ] || git clone --quiet --recursive https://github.com/Microsoft/CNTK.git "./third_party/src/cntk"
+            pushd "./third_party/src/cntk" > /dev/null
+            git pull --quiet --prune
+            git submodule sync --quiet
+            git submodule update --quiet --init --recursive
+            popd > /dev/null
+        ;;
+        *)
+            [ -d "./third_party/src/cntk" ] || git clone --quiet https://github.com/Microsoft/CNTK.git "./third_party/src/cntk"
+            pushd "./third_party/src/cntk" > /dev/null
+            git pull --quiet --prune
+            popd > /dev/null
+        ;;
+    esac
 }
 
 schema() {
     bold "cntk schema"
-    ${node_modules}/protobufjs/bin/pbjs -t static-module -w closure --no-encode --no-delimited --no-comments --no-convert --no-verify --no-create --keep-case -r cntk -o ${src}/cntk-proto.js ${third_party}/${identifier}/Source/CNTKv2LibraryDll/proto/CNTK.proto
-    node ${tools}/update_pbjs.js array ${src}/cntk-proto.js value float 1
+    [[ $(grep -U $'\x0D' ./src/cntk-proto.js) ]] && crlf=1
+    npx pbjs -t static-module -w closure --no-encode --no-delimited --no-comments --no-convert --no-verify --no-create --keep-case -r cntk -o ./src/cntk-proto.js ./third_party/src/cntk/Source/CNTKv2LibraryDll/proto/CNTK.proto
+    node ./tools/update_pbjs.js array ./src/cntk-proto.js value float 1
+    if [[ -n ${crlf} ]]; then
+        unix2dos --quiet --newfile ./src/cntk-proto.js ./src/cntk-proto.js
+    fi
 }
 
 while [ "$#" != 0 ]; do

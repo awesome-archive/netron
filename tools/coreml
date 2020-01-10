@@ -1,63 +1,59 @@
 #!/bin/bash
 
 set -e
+pushd $(cd $(dirname ${0})/..; pwd) > /dev/null
 
-root=$(cd $(dirname ${0})/..; pwd)
-node_modules=${root}/node_modules
-src=${root}/src
-third_party=${root}/third_party
-tools=${root}/tools
+case "${OSTYPE}" in
+    msys*) python="winpty python";;
+    *) python=python3;;
+esac
 
-identifier=coremltools
-virtualenv=${third_party}/virtualenv/${identifier}
+venv() {
+    env_dir=./third_party/env/coremltools
+    [ -d "${env_dir}" ] || ${python} -m venv ${env_dir}
+    case "${env_dir}" in
+        msys*) source ${env_dir}/Scripts/activate;;
+        *) source ${env_dir}/bin/activate;;
+    esac
+    ${python} -m pip install --quiet --upgrade pip
+}
 
 bold() {
     echo "$(tty -s && tput bold)$1$(tty -s && tput sgr0)" 
 }
 
-git_sync () {
-    mkdir -p "${third_party}"
-    if [ -d "${third_party}/${1}" ]; then
-        git -C "${third_party}/${1}" pull --quiet --prune
-    else
-        git -C "${third_party}" clone --quiet --recursive ${2}
-    fi
-    git -C "${third_party}/${1}" submodule sync --quiet
-    git -C "${third_party}/${1}" submodule update --quiet --init --recursive
-}
-
 clean() {
     bold "coreml clean"
-    rm -rf ${third_party}/coremltools
+    rm -rf "./third_party/src/env/coremltools"
+    rm -rf "./third_party/src/coremltools"
 }
 
 sync() {
     bold "coreml sync"
-    git_sync coremltools https://github.com/apple/coremltools.git
-}
-
-install() {
-    bold "coreml install"
-    [ -n "$(python3 -m pip list --format columns --disable-pip-version-check | grep -w virtualenv)" ] || python3 -m pip install --force-reinstall --user --quiet virtualenv
-    [ -d "${virtualenv}" ] || python3 -m virtualenv --quiet -p python3 ${virtualenv}
-    source ${virtualenv}/bin/activate
-    python3 -m pip install --quiet six numpy protobuf
-    python3 -m pip install --quiet ${third_party}/${identifier}
-    deactivate
+    [ -d "./third_party/src/coremltools" ] || git clone --quiet https://github.com/apple/coremltools.git "./third_party/src/coremltools"
+    pushd "./third_party/src/coremltools" > /dev/null
+    git pull --quiet --prune
+    popd > /dev/null
 }
 
 schema() {
     bold "coreml schema"
-    ${node_modules}/protobufjs/bin/pbjs -t static-module -w closure --no-encode --no-delimited --no-comments --no-convert --no-verify --no-create --keep-case -r coreml -o ${src}/coreml-proto.js ${third_party}/${identifier}/mlmodel/format/Model.proto
-    node ${tools}/update_pbjs.js array ${src}/coreml-proto.js floatValue float 2
+    [[ $(grep -U $'\x0D' ./src/coreml-proto.js) ]] && crlf=1
+    npx pbjs -t static-module -w closure --no-encode --no-delimited --no-comments --no-convert --no-verify --no-create --keep-case -r coreml -o ./src/coreml-proto.js ./third_party/src/coremltools/mlmodel/format/Model.proto
+    node ./tools/update_pbjs.js array ./src/coreml-proto.js floatValue float 2
+    if [[ -n ${crlf} ]]; then
+        unix2dos --quiet --newfile ./src/coreml-proto.js ./src/coreml-proto.js
+    fi
 }
 
 convert() {
     bold "coreml convert"
-    source ${virtualenv}/bin/activate
-    python3 -m pip install --quiet onnx
-    python3 -m pip install --quiet sklearn
-    python3 ${tools}/coreml-script.py convert ${1}
+    venv
+    ${python} -m pip install --quiet --upgrade six numpy protobuf
+    ${python} -m pip install --quiet ./third_party/src/coremltools
+    ${python} -m pip install --quiet onnx
+    ${python} -m pip install --quiet sklearn
+    ${python} ./tools/coreml-script.py convert ${1}
     deactivate
 }
 

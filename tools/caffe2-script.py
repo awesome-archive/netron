@@ -153,7 +153,7 @@ def metadata():
 
     import caffe2.python.core
 
-    json_file = '../src/caffe2-metadata.json'
+    json_file = os.path.join(os.path.dirname(__file__), '../src/caffe2-metadata.json')
     json_data = open(json_file).read()
     json_root = json.loads(json_data)
 
@@ -167,6 +167,8 @@ def metadata():
     for operator_name in caffe2.python.core._GetRegisteredOperators():
         op_schema = caffe2.python.workspace.C.OpSchema.get(operator_name)
         if op_schema:
+            if operator_name == 'Crash':
+                continue
             if operator_name in schema_map:
                 schema = schema_map[operator_name]
             else:

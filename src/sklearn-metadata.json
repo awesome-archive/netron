@@ -43,7 +43,7 @@
   {
     "name": "LabelEncoder",
     "schema": {
-      "description": "Encode target labels with value between 0 and n_classes-1.\n\nThis transformer should be used to encode target values, *i.e.* `y`, and\nnot the input `X`.\n\nRead more in the :ref:`User Guide <preprocessing_targets>`.\n",
+      "description": "Encode target labels with value between 0 and n_classes-1.\n\nThis transformer should be used to encode target values, *i.e.* `y`, and\nnot the input `X`.\n\nRead more in the :ref:`User Guide <preprocessing_targets>`.\n\n.. versionadded:: 0.12\n",
       "package": "sklearn.preprocessing"
     }
   },
@@ -108,12 +108,14 @@
           "type": "float32"
         },
         {
+          "default": 200.0,
           "description": "Specify the size of the kernel cache (in MB).\n",
           "name": "cache_size",
           "option": "optional",
           "type": "float32"
         },
         {
+          "default": null,
           "description": "Set the parameter C of class i to class_weight[i]*C for\nSVC. If not given, all classes are supposed to have\nweight one.\nThe \"balanced\" mode uses the values of y to automatically adjust\nweights inversely proportional to class frequencies in the input data\nas ``n_samples / (n_classes * np.bincount(y))``\n",
           "name": "class_weight",
           "option": "optional"
@@ -216,12 +218,14 @@
           "type": "float32"
         },
         {
+          "default": 200.0,
           "description": "Specify the size of the kernel cache (in MB).\n",
           "name": "cache_size",
           "option": "optional",
           "type": "float32"
         },
         {
+          "default": null,
           "description": "Set the parameter C of class i to class_weight[i]*C for\nSVC. If not given, all classes are supposed to have\nweight one.\nThe \"balanced\" mode uses the values of y to automatically adjust\nweights inversely proportional to class frequencies in the input data\nas ``n_samples / (n_classes * np.bincount(y))``\n",
           "name": "class_weight",
           "option": "optional"
@@ -315,7 +319,7 @@
         },
         {
           "default": null,
-          "description": "The seed of the pseudo random number generator to use when shuffling\nthe data.  If int, random_state is the seed used by the random number\ngenerator; If RandomState instance, random_state is the random number\ngenerator; If None, the random number generator is the RandomState\ninstance used by `np.random`. Used when ``solver`` == 'sag' or\n'liblinear'.\n",
+          "description": "Used when ``solver`` == 'sag', 'saga' or 'liblinear' to shuffle the\ndata. See :term:`Glossary <random_state>` for details.\n",
           "name": "random_state",
           "option": "optional",
           "type": "int32"
@@ -357,13 +361,15 @@
           "default": null,
           "description": "Number of CPU cores used when parallelizing over classes if\nmulti_class='ovr'\". This parameter is ignored when the ``solver`` is\nset to 'liblinear' regardless of whether 'multi_class' is specified or\nnot. ``None`` means 1 unless in a :obj:`joblib.parallel_backend`\ncontext. ``-1`` means using all processors.\nSee :term:`Glossary <n_jobs>` for more details.\n",
           "name": "n_jobs",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         },
         {
           "default": null,
           "description": "The Elastic-Net mixing parameter, with ``0 <= l1_ratio <= 1``. Only\nused if ``penalty='elasticnet'`. Setting ``l1_ratio=0`` is equivalent\nto using ``penalty='l2'``, while setting ``l1_ratio=1`` is equivalent\nto using ``penalty='l1'``. For ``0 < l1_ratio <1``, the penalty is a\ncombination of L1 and L2.\n",
           "name": "l1_ratio",
-          "option": "optional"
+          "option": "optional",
+          "type": "float32"
         }
       ],
       "description": "\nLogistic Regression (aka logit, MaxEnt) classifier.\n\nIn the multiclass case, the training algorithm uses the one-vs-rest (OvR)\nscheme if the 'multi_class' option is set to 'ovr', and uses the\ncross-entropy loss if the 'multi_class' option is set to 'multinomial'.\n(Currently the 'multinomial' option is supported only by the 'lbfgs',\n'sag', 'saga' and 'newton-cg' solvers.)\n\nThis class implements regularized logistic regression using the\n'liblinear' library, 'newton-cg', 'sag', 'saga' and 'lbfgs' solvers. **Note\nthat regularization is applied by default**. It can handle both dense\nand sparse input. Use C-ordered arrays or CSR matrices containing 64-bit\nfloats for optimal performance; any other input format will be converted\n(and copied).\n\nThe 'newton-cg', 'sag', and 'lbfgs' solvers support only L2 regularization\nwith primal formulation, or no regularization. The 'liblinear' solver\nsupports both L1 and L2 regularization, with a dual formulation only for\nthe L2 penalty. The Elastic-Net regularization is only supported by the\n'saga' solver.\n\nRead more in the :ref:`User Guide <logistic_regression>`.\n",
@@ -488,6 +494,7 @@
           "option": "optional"
         },
         {
+          "default": "auto",
           "description": "Algorithm used to compute the nearest neighbors:\n\n- 'ball_tree' will use :class:`BallTree`\n- 'kd_tree' will use :class:`KDTree`\n- 'brute' will use a brute-force search.\n- 'auto' will attempt to decide the most appropriate algorithm\nbased on the values passed to :meth:`fit` method.\n\nNote: fitting on sparse input will override the setting of\nthis parameter, using brute force.\n",
           "name": "algorithm",
           "option": "optional"
@@ -500,10 +507,11 @@
           "type": "int32"
         },
         {
-          "default": "2",
+          "default": 2,
           "description": "Power parameter for the Minkowski metric. When p = 1, this is\nequivalent to using manhattan_distance (l1), and euclidean_distance\n(l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.\n",
           "name": "p",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         },
         {
           "default": "minkowski",
@@ -520,7 +528,8 @@
           "default": null,
           "description": "The number of parallel jobs to run for neighbors search.\n``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.\n``-1`` means using all processors. See :term:`Glossary <n_jobs>`\nfor more details.\nDoesn't affect :meth:`fit` method.\n",
           "name": "n_jobs",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         }
       ],
       "description": "Classifier implementing the k-nearest neighbors vote.\n\nRead more in the :ref:`User Guide <classification>`.\n",
@@ -543,6 +552,7 @@
           "name": "weights"
         },
         {
+          "default": "auto",
           "description": "Algorithm used to compute the nearest neighbors:\n\n- 'ball_tree' will use :class:`BallTree`\n- 'kd_tree' will use :class:`KDTree`\n- 'brute' will use a brute-force search.\n- 'auto' will attempt to decide the most appropriate algorithm\nbased on the values passed to :meth:`fit` method.\n\nNote: fitting on sparse input will override the setting of\nthis parameter, using brute force.\n",
           "name": "algorithm",
           "option": "optional"
@@ -555,10 +565,11 @@
           "type": "int32"
         },
         {
-          "default": "2",
+          "default": 2,
           "description": "Power parameter for the Minkowski metric. When p = 1, this is\nequivalent to using manhattan_distance (l1), and euclidean_distance\n(l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.\n",
           "name": "p",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         },
         {
           "default": "minkowski",
@@ -575,10 +586,11 @@
           "default": null,
           "description": "The number of parallel jobs to run for neighbors search.\n``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.\n``-1`` means using all processors. See :term:`Glossary <n_jobs>`\nfor more details.\nDoesn't affect :meth:`fit` method.\n",
           "name": "n_jobs",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         }
       ],
-      "description": "Regression based on k-nearest neighbors.\n\nThe target is predicted by local interpolation of the targets\nassociated of the nearest neighbors in the training set.\n\nRead more in the :ref:`User Guide <regression>`.\n",
+      "description": "Regression based on k-nearest neighbors.\n\nThe target is predicted by local interpolation of the targets\nassociated of the nearest neighbors in the training set.\n\nRead more in the :ref:`User Guide <regression>`.\n\n.. versionadded:: 0.9\n",
       "package": "sklearn.neighbors"
     }
   },
@@ -693,9 +705,10 @@
         },
         {
           "default": null,
-          "description": "If int, random_state is the seed used by the random number generator;\nIf RandomState instance, random_state is the random number generator;\nIf None, the random number generator is the RandomState instance used\nby `np.random`. Used when ``svd_solver`` == 'arpack' or 'randomized'.\n\n.. versionadded:: 0.18.0\n",
+          "description": "Used when ``svd_solver`` == 'arpack' or 'randomized'. Pass an int\nfor reproducible results across multiple function calls.\nSee :term:`Glossary <random_state>`.\n\n.. versionadded:: 0.18.0\n",
           "name": "random_state",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         }
       ],
       "description": "Principal component analysis (PCA).\n\nLinear dimensionality reduction using Singular Value Decomposition of the\ndata to project it to a lower dimensional space. The input data is centered\nbut not scaled for each feature before applying the SVD.\n\nIt uses the LAPACK implementation of the full SVD or a randomized truncated\nSVD by the method of Halko et al. 2009, depending on the shape of the input\ndata and the number of components to extract.\n\nIt can also use the scipy.sparse.linalg ARPACK implementation of the\ntruncated SVD.\n\nNotice that this class does not support sparse input. See\n:class:`TruncatedSVD` for an alternative with sparse data.\n\nRead more in the :ref:`User Guide <PCA>`.\n",
@@ -729,6 +742,7 @@
     "schema": {
       "attributes": [
         {
+          "default": "content",
           "description": "If 'filename', the sequence passed as an argument to fit is\nexpected to be a list of filenames that need reading to fetch\nthe raw content to analyze.\n\nIf 'file', the sequence items must have a 'read' method (file-like\nobject) that is called to fetch the bytes in memory.\n\nOtherwise the input is expected to be a sequence of items that\ncan be of type string or byte.\n",
           "name": "input",
           "type": "string"
@@ -740,10 +754,12 @@
           "type": "string"
         },
         {
+          "default": "strict",
           "description": "Instruction on what to do if a byte sequence is given to analyze that\ncontains characters not of the given `encoding`. By default, it is\n'strict', meaning that a UnicodeDecodeError will be raised. Other\nvalues are 'ignore' and 'replace'.\n",
           "name": "decode_error"
         },
         {
+          "default": null,
           "description": "Remove accents and perform other character normalization\nduring the preprocessing step.\n'ascii' is a fast method that only works on characters that have\nan direct ASCII mapping.\n'unicode' is a slightly slower method that works on any characters.\nNone (default) does nothing.\n\nBoth 'ascii' and 'unicode' use NFKD normalization from\n:func:`unicodedata.normalize`.\n",
           "name": "strip_accents"
         },
@@ -754,16 +770,20 @@
           "type": "boolean"
         },
         {
+          "default": null,
           "description": "Override the preprocessing (string transformation) stage while\npreserving the tokenizing and n-grams generation steps.\nOnly applies if ``analyzer is not callable``.\n",
           "name": "preprocessor"
         },
         {
+          "default": null,
           "description": "Override the string tokenization step while preserving the\npreprocessing and n-grams generation steps.\nOnly applies if ``analyzer == 'word'``.\n",
           "name": "tokenizer"
         },
         {
+          "default": "None",
           "description": "If 'english', a built-in stop word list for English is used.\nThere are several known issues with 'english' and you should\nconsider an alternative (see :ref:`stop_words`).\n\nIf a list, that list is assumed to contain stop words, all of which\nwill be removed from the resulting tokens.\nOnly applies if ``analyzer == 'word'``.\n\nIf None, no stop words will be used. max_df can be set to a value\nin the range [0.7, 1.0) to automatically detect and filter stop\nwords based on intra corpus document frequency of terms.\n",
-          "name": "stop_words"
+          "name": "stop_words",
+          "type": "string"
         },
         {
           "description": "Regular expression denoting what constitutes a \"token\", only used\nif ``analyzer == 'word'``. The default regexp select tokens of 2\nor more alphanumeric characters (punctuation is completely ignored\nand always treated as a token separator).\n",
@@ -772,12 +792,14 @@
         },
         {
           "default": "(1, 1)",
-          "description": "The lower and upper boundary of the range of n-values for different\nn-grams to be extracted. All values of n such that min_n <= n <= max_n\nwill be used. For example an ``ngram_range`` of ``(1, 1)`` means only\nunigrams, ``(1, 2)`` means unigrams and bigrams, and ``(2, 2)`` means\nonly bigrams.\nOnly applies if ``analyzer is not callable``.\n",
+          "description": "The lower and upper boundary of the range of n-values for different\nword n-grams or char n-grams to be extracted. All values of n such\nsuch that min_n <= n <= max_n will be used. For example an\n``ngram_range`` of ``(1, 1)`` means only unigrams, ``(1, 2)`` means\nunigrams and bigrams, and ``(2, 2)`` means only bigrams.\nOnly applies if ``analyzer is not callable``.\n",
           "name": "ngram_range"
         },
         {
-          "description": "Whether the feature should be made of word or character n-grams.\nOption 'char_wb' creates character n-grams only from text inside\nword boundaries; n-grams at the edges of words are padded with space.\n\nIf a callable is passed it is used to extract the sequence of features\nout of the raw, unprocessed input.\n\n.. versionchanged:: 0.21\n\nSince v0.21, if ``input`` is ``filename`` or ``file``, the data is\nfirst read from the file and then passed to the given callable\nanalyzer.\n",
-          "name": "analyzer"
+          "default": "word",
+          "description": "Whether the feature should be made of word n-gram or character\nn-grams.\nOption 'char_wb' creates character n-grams only from text inside\nword boundaries; n-grams at the edges of words are padded with space.\n\nIf a callable is passed it is used to extract the sequence of features\nout of the raw, unprocessed input.\n\n.. versionchanged:: 0.21\n\nSince v0.21, if ``input`` is ``filename`` or ``file``, the data is\nfirst read from the file and then passed to the given callable\nanalyzer.\n",
+          "name": "analyzer",
+          "type": "string"
         },
         {
           "default": "1.0",
@@ -792,9 +814,11 @@
         {
           "default": null,
           "description": "If not None, build a vocabulary that only consider the top\nmax_features ordered by term frequency across the corpus.\n\nThis parameter is ignored if vocabulary is not None.\n",
-          "name": "max_features"
+          "name": "max_features",
+          "type": "int32"
         },
         {
+          "default": null,
           "description": "Either a Mapping (e.g., a dict) where keys are terms and values are\nindices in the feature matrix, or an iterable over terms. If not\ngiven, a vocabulary is determined from the input documents. Indices\nin the mapping should not be repeated and should not have any gap\nbetween 0 and the largest index.\n",
           "name": "vocabulary",
           "option": "optional"
@@ -806,6 +830,7 @@
           "type": "boolean"
         },
         {
+          "default": "np.int64",
           "description": "Type of the matrix returned by fit_transform() or transform().\n",
           "name": "dtype",
           "option": "optional"
@@ -820,6 +845,7 @@
     "schema": {
       "attributes": [
         {
+          "default": "content",
           "description": "If 'filename', the sequence passed as an argument to fit is\nexpected to be a list of filenames that need reading to fetch\nthe raw content to analyze.\n\nIf 'file', the sequence items must have a 'read' method (file-like\nobject) that is called to fetch the bytes in memory.\n\nOtherwise the input is expected to be a sequence of items that\ncan be of type string or byte.\n",
           "name": "input",
           "type": "string"
@@ -831,10 +857,12 @@
           "type": "string"
         },
         {
+          "default": "strict",
           "description": "Instruction on what to do if a byte sequence is given to analyze that\ncontains characters not of the given `encoding`. By default, it is\n'strict', meaning that a UnicodeDecodeError will be raised. Other\nvalues are 'ignore' and 'replace'.\n",
           "name": "decode_error"
         },
         {
+          "default": null,
           "description": "Remove accents and perform other character normalization\nduring the preprocessing step.\n'ascii' is a fast method that only works on characters that have\nan direct ASCII mapping.\n'unicode' is a slightly slower method that works on any characters.\nNone (default) does nothing.\n\nBoth 'ascii' and 'unicode' use NFKD normalization from\n:func:`unicodedata.normalize`.\n",
           "name": "strip_accents"
         },
@@ -859,6 +887,7 @@
           "name": "analyzer"
         },
         {
+          "default": null,
           "description": "If a string, it is passed to _check_stop_list and the appropriate stop\nlist is returned. 'english' is currently the only supported string\nvalue.\nThere are several known issues with 'english' and you should\nconsider an alternative (see :ref:`stop_words`).\n\nIf a list, that list is assumed to contain stop words, all of which\nwill be removed from the resulting tokens.\nOnly applies if ``analyzer == 'word'``.\n\nIf None, no stop words will be used. max_df can be set to a value\nin the range [0.7, 1.0) to automatically detect and filter stop\nwords based on intra corpus document frequency of terms.\n",
           "name": "stop_words"
         },
@@ -874,18 +903,19 @@
         },
         {
           "default": "1.0",
-          "description": "When building the vocabulary ignore terms that have a document\nfrequency strictly higher than the given threshold (corpus-specific\nstop words).\nIf float, the parameter represents a proportion of documents, integer\nabsolute counts.\nThis parameter is ignored if vocabulary is not None.\n",
+          "description": "When building the vocabulary ignore terms that have a document\nfrequency strictly higher than the given threshold (corpus-specific\nstop words).\nIf float in range [0.0, 1.0], the parameter represents a proportion of\ndocuments, integer absolute counts.\nThis parameter is ignored if vocabulary is not None.\n",
           "name": "max_df"
         },
         {
           "default": "1",
-          "description": "When building the vocabulary ignore terms that have a document\nfrequency strictly lower than the given threshold. This value is also\ncalled cut-off in the literature.\nIf float, the parameter represents a proportion of documents, integer\nabsolute counts.\nThis parameter is ignored if vocabulary is not None.\n",
+          "description": "When building the vocabulary ignore terms that have a document\nfrequency strictly lower than the given threshold. This value is also\ncalled cut-off in the literature.\nIf float in range of [0.0, 1.0], the parameter represents a proportion\nof documents, integer absolute counts.\nThis parameter is ignored if vocabulary is not None.\n",
           "name": "min_df"
         },
         {
           "default": null,
           "description": "If not None, build a vocabulary that only consider the top\nmax_features ordered by term frequency across the corpus.\n\nThis parameter is ignored if vocabulary is not None.\n",
-          "name": "max_features"
+          "name": "max_features",
+          "type": "int32"
         },
         {
           "default": null,
@@ -895,7 +925,7 @@
         },
         {
           "default": false,
-          "description": "If True, all non-zero term counts are set to 1. This does not mean\noutputs will have only 0/1 values, only that the tf term in tf-idf\nis binary. (Set idf and normalization to False to get 0/1 outputs.)\n",
+          "description": "If True, all non-zero term counts are set to 1. This does not mean\noutputs will have only 0/1 values, only that the tf term in tf-idf\nis binary. (Set idf and normalization to False to get 0/1 outputs).\n",
           "name": "binary",
           "type": "boolean"
         },
@@ -906,7 +936,8 @@
           "option": "optional"
         },
         {
-          "description": "Each output row will have unit norm, either:\n* 'l2': Sum of squares of vector elements is 1. The cosine\nsimilarity between two vectors is their dot product when l2 norm has\nbeen applied.\n* 'l1': Sum of absolute values of vector elements is 1.\nSee :func:`preprocessing.normalize`\n",
+          "default": "l2",
+          "description": "Each output row will have unit norm, either:\n* 'l2': Sum of squares of vector elements is 1. The cosine\nsimilarity between two vectors is their dot product when l2 norm has\nbeen applied.\n* 'l1': Sum of absolute values of vector elements is 1.\nSee :func:`preprocessing.normalize`.\n",
           "name": "norm"
         },
         {
@@ -1158,7 +1189,8 @@
           "default": null,
           "description": "The number of jobs to use for the computation. This will only provide\nspeedup for n_targets > 1 and sufficient large problems.\n``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.\n``-1`` means using all processors. See :term:`Glossary <n_jobs>`\nfor more details.\n",
           "name": "n_jobs",
-          "option": "optional"
+          "option": "optional",
+          "type": "int32"
         }
       ],
       "description": "\nOrdinary least squares Linear Regression.\n\nLinearRegression fits a linear model with coefficients w = (w1, ..., wp)\nto minimize the residual sum of squares between the observed targets in\nthe dataset, and the targets predicted by the linear approximation.\n",

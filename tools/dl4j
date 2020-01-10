@@ -1,38 +1,27 @@
 #!/bin/bash
 
 set -e
-
-root=$(cd $(dirname ${0})/..; pwd)
-node_modules=${root}/node_modules
-src=${root}/src
-third_party=${root}/third_party
-tools=${root}/tools
-
-identifier=dl4j
+pushd $(cd $(dirname ${0})/..; pwd) > /dev/null
+function exit_trap() {
+    popd > /dev/null
+}
+trap exit_trap EXIT
 
 bold() {
     echo "$(tty -s && tput bold)$1$(tty -s && tput sgr0)" 
 }
 
-git_sync() {
-    mkdir -p "${third_party}"
-    if [ -d "${third_party}/${1}" ]; then
-        git -C "${third_party}/${1}" pull --quiet --prune
-    else
-        git -C "${third_party}" clone --quiet --recursive ${2} ${1}
-    fi
-    git -C "${third_party}/${1}" submodule sync --quiet
-    git -C "${third_party}/${1}" submodule update --quiet --init --recursive
-}
-
 clean() {
     bold "deeplearning4j clean"
-    rm -rf ${third_party}/${identifier}
+    rm -rf "./third_party/src/dl4j"
 }
 
 sync() {
     bold "deeplearning4j sync"
-    git_sync dl4j https://github.com/eclipse/deeplearning4j.git
+    [ -d "./third_party/src/dl4j" ] || git clone --quiet https://github.com/eclipse/deeplearning4j.git "./third_party/src/dl4j"
+    pushd "./third_party/src/dl4j" > /dev/null
+    git pull --quiet --prune
+    popd > /dev/null
 }
 
 while [ "$#" != 0 ]; do

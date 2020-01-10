@@ -1,65 +1,59 @@
 #!/bin/bash
 
 set -e
-
-root=$(cd $(dirname ${0})/..; pwd)
-src=${root}/src
-third_party=${root}/third_party
-tools=${root}/tools
-
-identifier=mnn
+pushd $(cd $(dirname ${0})/..; pwd) > /dev/null
 
 bold() {
     echo "$(tty -s && tput bold)$1$(tty -s && tput sgr0)" 
 }
 
-git_sync() {
-    mkdir -p "${third_party}"
-    if [ -d "${third_party}/${1}" ]; then
-        git -C "${third_party}/${1}" pull --quiet --prune
-    else
-        git -C "${third_party}" clone --quiet --recursive ${2} ${1}
-    fi
-    git -C "${third_party}/${1}" submodule sync --quiet
-    git -C "${third_party}/${1}" submodule update --quiet --init --recursive
-}
-
 clean() {
     bold "mnn clean"
-    rm -rf ${third_party}/${identifier}
+    rm -rf "./third_party/src/mnn"
 }
 
 sync() {
     bold "mnn sync"
-    git_sync flatbuffers https://github.com/google/flatbuffers.git
-    git_sync mnn https://github.com/alibaba/MNN.git
-}
-
-install() {
-    bold "mnn install"
-    case "$(uname)" in
-        "Linux")
-            [ -n "$(which cmake)" ] || sudo apt install -y cmake
-            ;;
-        "Darwin")
-            brew list cmake > /dev/null 2>&1 || brew install cmake > /dev/null
-            ;;
-    esac
-    pushd "${third_party}/flatbuffers" > /dev/null
-    cmake -G "Unix Makefiles" . > /dev/null
-    make > /dev/null
+    [ -d "./third_party/src/mnn" ] || git clone --quiet https://github.com/alibaba/MNN.git "./third_party/src/mnn"
+    pushd "./third_party/src/mnn" > /dev/null
+    git pull --quiet --prune
     popd > /dev/null
 }
 
 schema() {
     bold "mnn schema"
-    ${third_party}/flatbuffers/flatc --no-js-exports --gen-all -o ${tools}/. --js ${third_party}/mnn/schema/default/MNN.fbs
-    mv ${tools}/MNN_generated.js ${src}/mnn-schema.js
-    cat <<EOT >> ${src}/mnn-schema.js
+    case "${OSTYPE}" in
+        linux*)
+            flatc_version=$(curl -s https://api.github.com/repos/google/flatbuffers/releases/latest | grep tag_name | cut -f 2 -d : | cut -f 2 -d '"')
+            flatc_dir=./third_party/bin/flatbuffers/${flatc_version}
+            if [ ! -f "${flatc_dir}/flatc" ]; then
+                mkdir -p "${flatc_dir}"
+                pushd "${flatc_dir}" > /dev/null
+                curl -sL https://github.com/google/flatbuffers/archive/${flatc_version}.tar.gz | tar zx --strip-components 1
+                cmake -G "Unix Makefiles" . &> /dev/null
+                make > /dev/null
+                popd > /dev/null
+            fi
+            export PATH=${flatc_dir}:${PATH}
+            ;;
+        darwin*)
+            brew list flatbuffers > /dev/null 2>&1 || brew install flatbuffers > /dev/null
+            ;;
+        msys*)
+            [ -x "$(command -v flatc)" ] || $(choco install flatc) > /dev/null
+            ;;
+    esac
+    [[ $(grep -U $'\x0D' ./src/mnn-schema.js) ]] && crlf=1
+    flatc --no-js-exports --gen-all -o ./tools/. --js ./third_party/src/mnn/schema/default/MNN.fbs
+    mv ./tools/MNN_generated.js ./src/mnn-schema.js
+    cat <<EOT >> ./src/mnn-schema.js
 if (typeof module !== 'undefined' && typeof module.exports === 'object') {
   module.exports = MNN;
 }
 EOT
+    if [[ -n ${crlf} ]]; then
+        unix2dos --quiet --newfile ./src/mnn-schema.js ./src/mnn-schema.js
+    fi
 }
 
 while [ "$#" != 0 ]; do
@@ -67,7 +61,6 @@ while [ "$#" != 0 ]; do
     case "${command}" in
         "clean") clean;;
         "sync") sync;;
-        "install") install;;
         "schema") schema;;
     esac
 done
